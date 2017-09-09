@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en" ng-app="musicApp" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<title>Google Phone Gallery</title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+<script src="core/core.module.js"></script>
+</head>
+<body ng-controller="ArtistDetailsController">
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a class="" data-toggle="" href="#" id="">Music Artist</a>
+                </li>
+                <li class="">
+                    <a class="" data-toggle="" href="#" id="">Themes</a>
+                </li>
+
+
+            </ul>
+
+
+        </div>
+    </div>
+</div>
+<div class="container clearfix" ng-controller="ArtistDetailsController">
+    <div class="row jumbotron">
+        <div class="col-md-6">
+            <h1>{{artist.name}}</h1>
+            <div class="row">
+                <div class="col-sm-4">
+                    <h2><strong>Since:</strong></h2>
+                </div>
+                <div class="col-sm-8">
+                    <h2><p class="pull-right">{{artist.created}}</p></h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <p><strong>Location:</strong></p>
+                </div>
+                <div class="col-sm-8">
+                    <p class="pull-right">{{artist.additionalInformation.location}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p><strong>Band members:</strong></p>
+                </div>
+                <div class="col-sm-8">
+                    <a href="#" class="btn btn-primary pull-right" ng-click="showHideAllMemebers()">{{showHideText}}</a>
+                </div>
+                <div class="col-sm-12" ng-show="bandMembersShown">
+                    <ul class="list-grpup">
+                            <li class="list-group-item band-members" ng-repeat="member in artist.additionalInformation.bandMembers">
+                                <a href="#album-{{album.id}}">{{member}}</a>
+                            </li>
+                </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p><strong>Records:</strong></p>
+                </div>
+                <div class="col-sm-8 text-right">
+                    <span class="">{{artist.additionalInformation.albums}} albums</span>
+                    <span class="">{{artist.additionalInformation.singles}} singles</span>
+                    <button href="#" class="btn btn-primary" ng-click="showHideREcords()">{{infoHideTetx}}</button>
+                </div>
+
+
+      <div ng-show="isRecordsVisible">
+          <div class="row">
+              <span><strong>Sort By:</strong></span>
+              <select ng-model="sort">
+                  <option value="id">None</option>
+                  <option value="name">Name</option>
+                  <option value="year">Year</option>
+                  <option value="price">Price</option>
+                  <option value="-rating">Rating</option>
+              </select>
+          </div>
+ <div class="row">
+     <ul class="nav nav-tabs">
+         <li ng-repeat="album in artist.albums | limitTo: 3 | orderBy: sort">
+             <a href="#album-{{album.id}}" target="_self" data-toggle="tab">{{album.name}} ({{album.rating}})</a>
+         </li>
+     </ul>
+     <div class="tab-content">
+         <div class="tab-pane fade" ng-repeat="album in artist.albums | limitTo: 3" id="album-{{album.id}}">
+             <div class="panel panel-default">
+                 <div>
+                     <div class="container">
+                         <div class="row">
+                             <div class="col-md-6">
+                                 <h3><strong>{{album.name | uppercase}}</strong></h3>
+                                 <p>
+                                     <strong>Price:</strong> {{album.price | currency}}
+                                 </p>
+                                 <p>
+                                     <strong>Year:</strong> {{album.year}}
+                                 </p>
+                                 <p>
+                                     <strong>Songs:</strong> {{album.songs}}
+                                 </p>
+                                 <p>
+                                     <strong>Rating:</strong> {{album.rating}}
+                                     <button class="btn btn-primary btn-xs" ng-click="updateRatingUp(album)">+</button>
+                                     <button class="btn btn-primary btn-xs" ng-click="updateRatingDown(album)">-</button>
+                                 </p>
+                                 <p>
+                                     <strong>Status</strong> {{album.status | status}}
+
+                                 </p>
+                             </div>
+                             <div class="col-md-6 image-container">
+                                 <img class="img-responsive" ng-src="{{album.image}}"/>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+
+             </div>
+         </div>
+
+     </div>
+ </div>
+      </div>
+
+            </div>
+        </div>
+        <div class="col-md-6 image-container">
+            <img class="img-responsive" ng-src="{{artist.image}}">
+        </div>
+    </div>
+</div>
+
+
+<script src="js/app.js"></script>
+<script src="js/controllers/ArtistDetailsController.js"></script>
+<script src="js/filters/filterStatus.js"></script>
+<script src="js/services/artistData.js"></script>
+</body>
+</html>

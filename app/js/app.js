@@ -1,1 +1,1 @@
-var musicApp = angular.module('musicApp', []);
+var musicApp = angular.module('musicApp', ['ngResource']);

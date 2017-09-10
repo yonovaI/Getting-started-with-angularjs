@@ -4,7 +4,18 @@ musicApp.controller('ArtistDetailsController',
     function ($scope, artistData) {
         $scope.iza = "iza";
 
-        $scope.artist = artistData.getArtist;
+        // artistData.getArtist(2, function(data){
+        //     $scope.artist = data;
+        // });
+
+        //     artistData.getArtist(3)
+        //         .then(
+        //             function (data) {
+        //                 $scope.artist = data;
+        //             }
+        //         );
+
+        $scope.artist = artistData.getArtist(2);
 
         $scope.showHideAllMemebers = showHideAllMemebers;
         $scope.bandMembersShown = false;

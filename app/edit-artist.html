@@ -5,6 +5,7 @@
     <title>Google Phone Gallery</title>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="/lib/angular/angular-resource.js"></script>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -90,7 +91,7 @@
                     </div>
                 </fieldset>
                 <div class="pull-right">
-                    <button class="btn btn-default" ng-click="saveAritst(artist, newArtistForm)">Save</button>
+                    <button class="btn btn-default" ng-click="saveArtist(artist, newArtistForm)">Save</button>
                     <button class="btn btn-default" ng-click="cancelEdit()">Cancel</button>
                 </div>
             </form>
@@ -106,6 +107,7 @@
 <script src="js/controllers/ArtistDetailsController.js"></script>
 <script src="js/filters/filterStatus.js"></script>
 <script src="js/controllers/EditArtistController.js"></script>
+<script src="js/services/artistData.js"></script>
 
 </body>
 
